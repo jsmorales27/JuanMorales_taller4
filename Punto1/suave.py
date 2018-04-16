@@ -42,7 +42,9 @@ plt.savefig("original.png")
 
 # Hacer la funcion gaussiana con una parametrizacion t
 t = np.linspace(-200, 200, img.shape[1])
-gauss1d = gaussiana(1.0,np.sqrt(500),t)
+print "\nIntroduzca la varianza de la gaussiana deseada \n    (recomendada 500)"
+sigma=float(input())
+gauss1d = gaussiana(1.0,np.sqrt(sigma),t)
 
 #curva gaussiana de dos dimensiones a partir de la multiplicacion de vectores gaussianos
 gauss2d = gauss1d[:, np.newaxis] * gauss1d[np.newaxis, :]
@@ -57,12 +59,17 @@ from scipy import fftpack
 
 # Multiplicar las matrices en el espacio de fourier y luego hacer la transformada inversa
 img2_fourier = gauss2d_fourier[:, :, np.newaxis] * img_fourier
+
 img2 = fftpack.ifft2(img2_fourier, axes=(0,1)) ##### USO DEL PAQUETE CON LA TRANSFORMADA INVERSA
                                                 #####    (No se estudio en clase detenidamente)
 plt.imshow(fftpack.fftshift(img2).real) ##### Uso del paquete para poner (0,0) en centro de la imagen
 plt.savefig("suave.png")
 
 #visualizar gaussiana dos dimensional y su transformada
+
+plt.imshow(abs(fftpack.fftshift(img2_fourier)))
+plt.savefig("imagen_fourier_filtrada.png")
+plt.clf()
 
 plt.imshow(gauss2d)
 plt.savefig("gauss.png")
