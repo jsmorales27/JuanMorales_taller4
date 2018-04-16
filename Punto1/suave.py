@@ -35,15 +35,15 @@ def fourier(matriz, tamano):
 ##############################  Funciona para imagenes cuadradas, es decir nxn ###############################
 ##############################  Funciona para imagenes pequenas, es decir n<40 ###############################
                              #       (para 60x60 ya toma entre 5min y 10 min)
-
-img = plt.imread('cristiano.png')
+print "\n######## Programa para suavizado de Imagenes CUADRADAS max(30x30) ###### \n"
+imagen=raw_input("Nombre del archivo de imagen (gris.png): " )
+img = plt.imread(imagen)
 plt.imshow(img)
 plt.savefig("original.png")
 
 # Hacer la funcion gaussiana con una parametrizacion t
 t = np.linspace(-200, 200, img.shape[1])
-print "\nIntroduzca la varianza de la gaussiana deseada \n    (recomendada 500)"
-sigma=float(input())
+sigma=float(input("Introduzca la varianza de la gaussiana deseada (recomendada 500): "))
 gauss1d = gaussiana(1.0,np.sqrt(sigma),t)
 
 #curva gaussiana de dos dimensiones a partir de la multiplicacion de vectores gaussianos
