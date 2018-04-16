@@ -11,7 +11,7 @@ import math
 from scipy import fftpack
 from scipy.signal import convolve2d
 # read image
-img = plt.imread('cristiano.png')
+img = plt.imread('gris.png')
 print(np.shape(img))
 
 # prepare an 1-D Gaussian convolution kernel
